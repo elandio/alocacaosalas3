@@ -1,0 +1,38 @@
+@CHARSET "ISO-8859-1";
+
+#combo1{
+	float: left;
+	padding-left: 50px;
+	width: 100px;
+	height: 50px;
+}
+
+#combo2{
+	float: left;
+	padding-left: 50px;
+	width: 100px;
+	height: 50px;
+}
+
+#combo3{
+	float: left;
+	padding-left: 50px;
+	width: 100px;
+	height: 50px;
+}
+
+#combo4{
+	float: left;
+	padding-left: 50px;
+	width: 100px;
+	height: 50px;
+}
+
+
+
+#combosPreferencia{
+	padding-left: 50;
+	width: 700px;
+	
+	background: #000080;
+}
