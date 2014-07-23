@@ -1,0 +1,34 @@
+@CHARSET "ISO-8859-1";
+
+#turma{
+	width: 650px;
+	heigth: 410px;
+}
+
+#jupiterweb
+{
+	position: relative;
+	float: left;
+	width: 250px;
+	heigth: 400px;
+}
+
+#botaoescolha{
+	padding-top: 100px;
+	padding-left: 15px;
+	padding-right: 10px;
+	position: relative;
+	float: left;
+	width: 40px;
+	heigth: 200px;
+}
+
+
+
+#bancolocal
+{
+	position: relative;
+	float: left;
+	width: 300px;
+	heigth: 400px;
+}
