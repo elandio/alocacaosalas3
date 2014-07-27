@@ -69,6 +69,8 @@ public class AlocController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		String flag = request.getParameter("flag");
+		if(flag.equals("1")){
 		Turma t = new Turma();
 		String dia = request.getParameter("dia");
 		int k;
@@ -90,7 +92,7 @@ public class AlocController extends HttpServlet {
 				if (join.getNumsla() == numslas.get(s)) {
 					for (h = 0; h < hors.size(); h++) {
 						if (join.getHora().equals(hors.get(h))) {
-							k = s * hors.size() + h;
+							k = s * hors.size() + h +1;
 							saida.put(k, join);
 						}
 					}
@@ -98,6 +100,11 @@ public class AlocController extends HttpServlet {
 			}
 		}
 		write(response, saida);
+		}else{
+			/*Map<Integer, String[]> input = new HashMap<Integer, String[]>();
+			
+			System.out.println("funcionou");*/
+		}
 	}
 	private void write(HttpServletResponse response, HashMap<Integer, JHorSlaTur> saida) throws IOException {
 		response.setCharacterEncoding("application/json");
