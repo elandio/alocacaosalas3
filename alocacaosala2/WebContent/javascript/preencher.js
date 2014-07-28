@@ -13,7 +13,7 @@ $(document).ready(function() {
 	});
 
 	$('#Salvar').click(function() {
-		var map = new Object();
+		var map = "-";
 		var key;
 		var total = 300;
 		for (key = 1; key <= total; key++) {
@@ -21,10 +21,14 @@ $(document).ready(function() {
 
 			} else {
 				var mb = $(".horario-" + key).text();
-				map[key] = mb;
-				alert(map[key]);
+				
+				map += key;
+				map +="-";
+				map += mb;
+				map +="-";
+				
 			}
-			alert(map[1]);
+			
 		}
 		$.post("aloccontroller.do", {
 			mapa : map,
