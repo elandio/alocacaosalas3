@@ -67,6 +67,7 @@ public class AlocController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@SuppressWarnings("unchecked")
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String flag = request.getParameter("flag");
@@ -101,9 +102,13 @@ public class AlocController extends HttpServlet {
 		}
 		write(response, saida);
 		}else{
-			/*Map<Integer, String[]> input = new HashMap<Integer, String[]>();
+			String input;
 			
-			System.out.println("funcionou");*/
+			
+			input = request.getParameter("mapa");
+			String[] map = input.split("-");
+			System.out.println(input);
+			System.out.println(map[3]+" "+map[1]);
 		}
 	}
 	private void write(HttpServletResponse response, HashMap<Integer, JHorSlaTur> saida) throws IOException {
