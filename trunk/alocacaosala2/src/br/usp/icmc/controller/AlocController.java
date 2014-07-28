@@ -103,12 +103,22 @@ public class AlocController extends HttpServlet {
 		write(response, saida);
 		}else{
 			String input;
-			
+			HashMap<String,String> map = new HashMap<String,String>();
 			
 			input = request.getParameter("mapa");
-			String[] map = input.split("-");
+			String[] colecao = input.split("-");
 			System.out.println(input);
-			System.out.println(map[3]+" "+map[1]);
+			int j = 1;
+			while(j<colecao.length){
+				map.put(colecao[j], colecao[j+1]);
+				j+=2;
+			}
+			Set<String> chaves = map.keySet();  
+	        for (String chave : chaves)  
+	        {  
+	            if(chave != null)  
+	            	System.out.println("a chave e = "+chave + " conteudo = "+map.get(chave));  
+	        }
 		}
 	}
 	private void write(HttpServletResponse response, HashMap<Integer, JHorSlaTur> saida) throws IOException {
