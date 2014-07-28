@@ -16,6 +16,7 @@ $(document).ready(function() {
 		var map = "-";
 		var key;
 		var total = 300;
+		var dia_semana = $('option:selected').text();
 		for (key = 1; key <= total; key++) {
 			if ($.trim($(".horario-" + key).html().length) == 0) {
 
@@ -26,12 +27,13 @@ $(document).ready(function() {
 				map +="-";
 				map += mb;
 				map +="-";
-				
+				alert(map);
 			}
 			
 		}
 		$.post("aloccontroller.do", {
 			mapa : map,
+			dia : dia_semana,
 			flag : 2
 		}, function(mapa) {
 		}, "json");

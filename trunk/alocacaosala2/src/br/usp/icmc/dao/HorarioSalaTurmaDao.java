@@ -1,5 +1,6 @@
 package br.usp.icmc.dao;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -17,9 +18,53 @@ public class HorarioSalaTurmaDao extends BDConnection {
 		this.conectar();
 	}
 
+	public void deletarHST(String dia){
+		ArrayList<JHorSlaTur> hstur = new ArrayList<JHorSlaTur>();
+		hstur = this.listarSaida(dia);
+		
+		
+		for (JHorSlaTur hr: hstur){
+			System.out.println(hr.getDiasem());
+			String sql = ("DELETE FROM HORARIO_SALA_TURMA WHERE IDHOR = "+"'"+hr.getIdhor()+"'");
+			PreparedStatement pstm;
+			try {
+				pstm = con.prepareStatement(sql);
+				pstm.execute();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+	}
+	
+	
+	
+	public void inserirHST(int hor, int sla, String tur, String diasem){
+		String[] separTurma = tur.split("\n");
+		System.out.println(" "+separTurma[0]);
+		Integer turma = Integer.parseInt(separTurma[0]);
+		try {
+			System.out.println("isso no banco id hora = "+hor+" "+" sala = "+sla+" turma = "+turma);
+			String sql = ("INSERT INTO HORARIO_SALA_TURMA VALUES(?,?,?);");
+		PreparedStatement pstm = con.prepareStatement(sql);
+
+		pstm.setInt(1, hor);
+		pstm.setInt(2, sla);
+		pstm.setInt(3, turma);
+
+		pstm.execute();
+
+		System.out.println("adicionado com secesso");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public ArrayList<JHorSlaTur> listarSaida(String dia){
 		ArrayList<JHorSlaTur> jhst = new ArrayList<JHorSlaTur>();
-		String sql = ("SELECT HORARIO_SALA_TURMA.CODTUR, TURMA.CODDIS, DISCIPLINA.NOMDIS, DISCIPLINA.NUMCRE, HORARIO.HOR, HORARIO.DIASEM, CURSOANO.NOMCUR, SALA.NUMSLA "
+		String sql = ("SELECT HORARIO_SALA_TURMA.CODTUR, TURMA.CODDIS, DISCIPLINA.NOMDIS, DISCIPLINA.NUMCRE, HORARIO.HOR, HORARIO.DIASEM, CURSOANO.NOMCUR, SALA.NUMSLA, HORARIO.IDHOR "
 				+ "FROM HORARIO_SALA_TURMA "
 				+	"INNER JOIN HORARIO ON(HORARIO.IDHOR = HORARIO_SALA_TURMA.IDHOR) "
 				+	"INNER JOIN SALA ON(SALA.IDSLA = HORARIO_SALA_TURMA.IDSLA) "
@@ -44,6 +89,7 @@ public class HorarioSalaTurmaDao extends BDConnection {
 				horslatur.setDiasem(hsturma.getString(6));
 				horslatur.setNomcur(hsturma.getString(7));
 				horslatur.setNumsla(hsturma.getInt(8));
+				horslatur.setIdhor(hsturma.getInt(9));
 				jhst.add(horslatur);
 				
 			}
