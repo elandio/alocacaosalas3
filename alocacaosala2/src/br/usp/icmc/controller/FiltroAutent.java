@@ -42,7 +42,10 @@ public class FiltroAutent implements Filter {
 		if (sessao.getAttribute("logado") != null
 				|| url.lastIndexOf("login.jsp") > -1
 				|| url.lastIndexOf("autent.do") > -1
-				|| url.lastIndexOf("visualizar.jsp") > -1) {
+				|| url.lastIndexOf("CSS/") > -1
+				|| url.lastIndexOf("javascript/") > -1
+				|| url.lastIndexOf("images/") > -1
+				|| url.lastIndexOf("visualizar.jsp") > -1){
 			chain.doFilter(request, response);
 		} else {
 			((HttpServletResponse) response).sendRedirect("login.jsp");
