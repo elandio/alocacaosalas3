@@ -11,7 +11,16 @@ public class JHorSlaTur {
 	private String nomcur;
 	private int numsla;
 	private int numcre;
+	private int idhor;
 	
+	public int getIdhor() {
+		return idhor;
+	}
+
+	public void setIdhor(int idhor) {
+		this.idhor = idhor;
+	}
+
 	public JHorSlaTur(){
 		
 	}
