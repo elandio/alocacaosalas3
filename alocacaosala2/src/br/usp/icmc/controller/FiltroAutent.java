@@ -45,6 +45,8 @@ public class FiltroAutent implements Filter {
 				|| url.lastIndexOf("CSS/") > -1
 				|| url.lastIndexOf("javascript/") > -1
 				|| url.lastIndexOf("images/") > -1
+				|| url.lastIndexOf("upload") > -1 // TODO remove
+				|| url.lastIndexOf("success") > -1 // TODO remove
 				|| url.lastIndexOf("visualizar.jsp") > -1){
 			chain.doFilter(request, response);
 		} else {
